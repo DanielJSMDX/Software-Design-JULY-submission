@@ -19,17 +19,34 @@ public class Main {
             all_parts.add(part);
         }
         int pos = 0;
-        for (String s : x) {// adds all the elements from the starting set into the corresponding sublist
-            if (all_parts.get(pos).size() >= 2) {//moves on to next sublist when two elements are in the currently viewed sublist.
-                pos = pos + 1;
+        for (int i = 0; i < x.size(); i++) {// adds all the elements from the starting set into the corresponding sublist
+            if(all_parts.get(pos).size() >=2) {//moves on to next sublist when two elements are in the currently viewed sublist.
+                pos = pos +1;
             }
-            all_parts.get(pos).add(s); // adds currently viewed element from the main list into the correct part sublist.
+                all_parts.get(pos).add(x.get(i)); // adds currently viewed element from the main list into the correct part sublist.
         }
         System.out.println("current arrangement: " + all_parts);
+        organiser(all_parts);
 
 
     }
 
+    private static void organiser(List<List<String>> all_parts) {
+        for (int p=0;p<all_parts.size(); p++) {
+            System.out.println(all_parts.get(p));
+            if (all_parts.get(p).get(0).compareTo(all_parts.get(p).get(1))<= 0) {
+                System.out.println("this part is in order, moving to next part.");
+            }
+            else{
+                String moved_element = all_parts.get(p).get(0);
+                all_parts.get(p).remove(0);
+                all_parts.get(p).add(moved_element);
+                p = p-1;
+                System.out.println("re-doing this part");
+            }
+        }
+        System.out.println(all_parts);
+    }
 
 
 }
