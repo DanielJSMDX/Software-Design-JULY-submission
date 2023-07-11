@@ -41,7 +41,54 @@ public class Main {
             }
         }
         System.out.println(all_parts); //just to make sure the for loop worked properly.
+        combiner(all_parts);
+    }
+
+    private static void combiner(List<List<String>> all_parts) {// this will start combining the different parts together to start the official merge sort.
+        List<List<String>> merged_parts = new ArrayList<>();
+
+        int list_count = all_parts.size()/2; //to find the amount of lists required for later
+
+        for (int L = 0; L<list_count; L++) { // creates the different parts for all_parts, to fill in later
+            List<String> part = new ArrayList<>();
+            merged_parts.add(part);
+
+        }
+        int p1 = 0;// part 1 of the sorting; acts as the lower bound for each for loop of i.
+        int p2 = p1+1;
+        for (int i=0;i<merged_parts.size(); i++) {//goes through the different lists inside merged_parts for merging.
+            System.out.println(all_parts.get(p1));
+            System.out.println(all_parts.get(p2));
+            System.out.println("p1 = " + p1);
+            System.out.println("p2 = " + p2);
+
+            System.out.println("i = " + i);
+
+            for(int p3=p1;p3<=p2;p3++) {//goes through the "all_parts" list and adds its contents via the inner for loop to the corresponding merged_parts list.
+                System.out.println("p3 = " + p3);
+
+                for(int p4=0;p4 <all_parts.get(p3).size();p4++) {//after adding contents from "all_parts" to "merged_parts", removes from "all_parts".
+                    System.out.println("p4 = " + p4);
+
+                    merged_parts.get(i).add((all_parts.get(p3).get(p4)));
+
+                }
+
+
+            }
+            p1 = p1+2;
+            p2 = p1+1;
+        }
+
+
+        System.out.println("merged_parts: " + merged_parts);
+
+
     }
 
 
 }
+//for(int p2=0;p2<=all_parts.get(p).size(); p2++) {
+  //      merged_parts.get(i).add(String.valueOf(all_parts.get(p).get(p2)));
+
+    //    }
