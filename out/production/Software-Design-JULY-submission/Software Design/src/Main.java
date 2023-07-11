@@ -32,15 +32,19 @@ public class Main {
     }
 
     private static void organiser(List<List<String>> all_parts) { // goes through each part and makes sure they are organised.
-        for (int p=0;p<all_parts.size(); p++) {
-            if (all_parts.get(p).get(0).compareTo(all_parts.get(p).get(1)) > 0) { //if current part is not in order, this takes out the first element
-                String moved_element = all_parts.get(p).get(0);                   // and puts it at the end
-                all_parts.get(p).remove(0);
-                all_parts.get(p).add(moved_element);
-                p = p - 1;
+        for (int l=0;l<all_parts.size();l++) {
+            for (int p=0;p<all_parts.get(l).size()-1; p++) {
+                if(all_parts.get(l).get(p).compareToIgnoreCase(all_parts.get(l).get(p+1)) >0){
+                    String temp1 = all_parts.get(l).get(p);
+                    all_parts.get(l).get(p).replace(all_parts.get(l).get(p), all_parts.get(l).get(p+1));
+                    all_parts.get(l).get(p).replace(all_parts.get(l).get(p+1), temp1);
+
+
+
+                }
             }
         }
-        System.out.println(all_parts); //just to make sure the for loop worked properly.
+        System.out.println("all_parts now is: " + all_parts); //just to make sure the for loop worked properly.
         combiner(all_parts);
     }
 
@@ -82,11 +86,23 @@ public class Main {
 
 
         System.out.println("merged_parts: " + merged_parts);
-
+        organiser2(merged_parts);
 
     }
+    private static void organiser2(List<List<String>> all_parts) { // goes through each part and makes sure they are organised.
+        for (int l = 0; l < all_parts.size(); l++) {
+            for (int p = 0; p < all_parts.get(l).size() - 1; p++) {
+                if (all_parts.get(l).get(p).compareToIgnoreCase(all_parts.get(l).get(p + 1)) > 0) {
+                    String temp1 = all_parts.get(l).get(p);
+                    Collections.swap(all_parts.get(l),p, p+1);
+                    System.out.println("all_parts now is: " + all_parts);
 
 
+                }
+            }
+        }
+        System.out.println("all_parts now is: " + all_parts); //just to make sure the for loop worked properly.
+    }
 }
 //for(int p2=0;p2<=all_parts.get(p).size(); p2++) {
   //      merged_parts.get(i).add(String.valueOf(all_parts.get(p).get(p2)));
