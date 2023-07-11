@@ -31,21 +31,16 @@ public class Main {
 
     }
 
-    private static void organiser(List<List<String>> all_parts) {
+    private static void organiser(List<List<String>> all_parts) { // goes through each part and makes sure they are organised.
         for (int p=0;p<all_parts.size(); p++) {
-            System.out.println(all_parts.get(p));
-            if (all_parts.get(p).get(0).compareTo(all_parts.get(p).get(1))<= 0) {
-                System.out.println("this part is in order, moving to next part.");
-            }
-            else{
-                String moved_element = all_parts.get(p).get(0);
+            if (all_parts.get(p).get(0).compareTo(all_parts.get(p).get(1)) > 0) { //if current part is not in order, this takes out the first element
+                String moved_element = all_parts.get(p).get(0);                   // and puts it at the end
                 all_parts.get(p).remove(0);
                 all_parts.get(p).add(moved_element);
-                p = p-1;
-                System.out.println("re-doing this part");
+                p = p - 1;
             }
         }
-        System.out.println(all_parts);
+        System.out.println(all_parts); //just to make sure the for loop worked properly.
     }
 
 
